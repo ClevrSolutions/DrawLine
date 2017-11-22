@@ -16,26 +16,25 @@
 	===========
 
 */
-dojo.provide("DrawLine.widget.DrawLine");
+define([
+    "dojo/_base/declare",
+    "mxui/widget/_WidgetBase"
 
-mendix.widget.declare("DrawLine.widget.DrawLine",
-{
-    addons: null,
-    inputargs:
-    {
+], function (declare, _WidgetBase) {
+    "use strict";
+
+    return declare("DrawLine.widget.DrawLine", [_WidgetBase], {
         
         width       : 100,          // Length of the line in default procents.
         widthType   : "procent" ,   // The draw type of the line exact or variable
         thickness   : 1,            // thickness of the line in pixels
         align       : "",           // Align of the line left, center or right        
-        color       : ""            // The color of the line
-    },
+        color       : "",            // The color of the line
 
     postCreate : function()
     {
         logger.debug(this.id + ".postCreate");
         this.createLine();
-        this.actRendered();
     },
 
     createLine : function()
@@ -63,4 +62,7 @@ mendix.widget.declare("DrawLine.widget.DrawLine",
     {
         logger.debug(this.id + ".uninitialize");
     }
-});
+        });
+    });
+
+require(["DrawLine/widget/DrawLine"]);
